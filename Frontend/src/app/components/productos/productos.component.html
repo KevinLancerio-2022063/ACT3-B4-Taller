@@ -44,7 +44,7 @@
       <p>No hay productos registrados</p>
     </div>
 
-    <!-- Tabla de datos con estilo Bolt -->
+    <!-- Tabla de datos -->
     <table *ngIf="filteredProductos.length > 0" class="data-table">
       <thead>
         <tr>
@@ -63,7 +63,7 @@
           <td class="text-muted">{{ producto.descripcion }}</td>
           <td class="font-medium text-success">Q{{ producto.precio | number:"1.2-2" }}</td>
           <td>
-            <!-- Barra visual de stock identica a la de Bolt -->
+            <!-- Barra visual de stock -->
             <div class="stock-bar-container">
               <span>{{ producto.stock }}</span>
               <div class="stock-bar-bg">
