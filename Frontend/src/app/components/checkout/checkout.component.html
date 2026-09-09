@@ -19,8 +19,21 @@
     </button>
   </div>
 
-  <!-- Detalles de la orden -->
-  <div class="checkout-content">
+  <!-- Estado de orden exitosa -->
+  <div *ngIf="ordenExitosa" class="estado-exitoso">
+    <svg class="icono-exito" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+    <h2 class="titulo-exito">Orden Confirmada</h2>
+    <p class="mensaje-exito">Tu orden #{{ ordenId }} ha sido procesada exitosamente</p>
+    <button (click)="volverAProductos()" class="btn-primary">
+      Continuar Comprando
+    </button>
+  </div>
+
+  <!-- Detalles de la orden cuando no esta confirmada -->
+  <div *ngIf="!ordenExitosa" class="checkout-content">
     
     <!-- Lista de productos a comprar -->
     <div class="detalle-items">
