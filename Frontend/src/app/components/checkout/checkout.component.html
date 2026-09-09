@@ -1,0 +1,65 @@
+<!-- Componente de alerta de exito que se muestra tras confirmar la compra -->
+<app-alerta-exito
+  [mostrar]="mostrarAlerta"
+  titulo="Compra confirmada"
+  mensaje="Tu orden se ha procesado correctamente">
+</app-alerta-exito>
+
+<!-- Contenedor principal del checkout -->
+<div class="container-page">
+  
+  <!-- Encabezado del checkout -->
+  <div class="header-section">
+    <div>
+      <h1 class="page-title">Confirmar Compra</h1>
+      <p class="page-description">Revisa los detalles de tu orden antes de confirmar</p>
+    </div>
+    <button (click)="cancelar()" class="btn-secondary" [disabled]="procesando">
+      Volver al Carrito
+    </button>
+  </div>
+
+  <!-- Detalles de la orden -->
+  <div class="checkout-content">
+    
+    <!-- Lista de productos a comprar -->
+    <div class="detalle-items">
+      <h2 class="seccion-titulo">Productos</h2>
+      <div *ngFor="let item of items" class="detalle-item">
+        <div class="item-info">
+          <h3 class="item-nombre">{{ item.nombre }}</h3>
+          <p class="item-detalles">{{ item.cantidad }} x Q{{ item.precio | number:"1.2-2" }}</p>
+        </div>
+        <div class="item-subtotal">
+          Q{{ item.precio | subtotal:item.cantidad | number:"1.2-2" }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen de la orden -->
+    <div class="resumen-orden">
+      <h2 class="seccion-titulo">Resumen</h2>
+      
+      <div class="resumen-linea">
+        <span>Total de productos:</span>
+        <span>{{ items | cantidadTotal }}</span>
+      </div>
+      
+      <div class="resumen-linea resumen-total">
+        <span>Total a pagar:</span>
+        <span>Q{{ items | totalCarrito | number:"1.2-2" }}</span>
+      </div>
+      
+      <!-- Botones de accion -->
+      <div class="acciones-checkout">
+        <button (click)="cancelar()" class="btn-cancelar" [disabled]="procesando">
+          Cancelar
+        </button>
+        <button (click)="confirmarOrden()" class="btn-confirmar" [disabled]="procesando">
+          <span *ngIf="!procesando">Confirmar Compra</span>
+          <span *ngIf="procesando">Procesando...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

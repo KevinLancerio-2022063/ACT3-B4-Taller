@@ -1,0 +1,6 @@
+/* src/styles.css */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  background-color: #f8f9fa; /* Un gris muy suave de fondo */
+}

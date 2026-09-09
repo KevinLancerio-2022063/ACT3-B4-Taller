@@ -1,0 +1,325 @@
+/* Contenedor principal con fondo degradado animado */
+.container-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Animación de fondo degradado */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Encabezado del formulario con animación */
+.form-header {
+  margin-bottom: 2rem;
+  animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botón de retroceso con efecto 3D */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  border: 2px solid #bae6fd;
+  color: #0ea5e9;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 3px 0 #e0f2fe,
+    0 6px 12px rgba(14, 165, 233, 0.1);
+}
+
+.btn-back:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 5px 0 #bae6fd,
+    0 10px 20px rgba(14, 165, 233, 0.2);
+  color: #0284c7;
+}
+
+.btn-back:active {
+  transform: translateY(1px);
+  box-shadow: 
+    0 1px 0 #bae6fd,
+    0 2px 4px rgba(14, 165, 233, 0.1);
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0b1f5c;
+  margin: 0 0 0.35rem 0;
+  letter-spacing: -0.02em;
+}
+
+.form-description {
+  font-size: 0.95rem;
+  color: #475569;
+  margin: 0;
+}
+
+/* Tarjeta del formulario con efecto 3D */
+.form-card {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 
+    0 8px 0 #e0f2fe,
+    0 16px 40px rgba(11, 31, 92, 0.1);
+  animation: slideUp 0.6s ease-out 0.2s both;
+  transition: transform 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Grupos de formulario con animación escalonada */
+.form-group {
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.5s ease-out both;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0b1f5c;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+/* Inputs con efecto 3D y transiciones */
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #bae6fd;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  color: #0b1f5c;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+  box-shadow: 
+    0 3px 0 #e0f2fe,
+    inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 5px 0 #bae6fd,
+    0 8px 20px rgba(14, 165, 233, 0.15),
+    inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.form-input.is-invalid {
+  border-color: #ef4444;
+  background: #fef2f2;
+  box-shadow: 
+    0 3px 0 #fecaca,
+    0 6px 16px rgba(239, 68, 68, 0.15);
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Mensajes de error con animación */
+.error-messages {
+  margin-top: 0.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+.error-text {
+  display: block;
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Acciones del formulario */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #e0f2fe;
+  animation: fadeIn 0.5s ease-out 0.5s both;
+}
+
+/* Botón primario 3D con efecto de brillo */
+.btn-primary {
+  flex: 1.5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 0 #0369a1,
+    0 8px 20px rgba(14, 165, 233, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+}
+
+/* Efecto de brillo al hacer hover */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 6px 0 #0369a1,
+    0 12px 28px rgba(14, 165, 233, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 
+    0 2px 0 #0369a1,
+    0 4px 8px rgba(14, 165, 233, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Botón secundario 3D */
+.btn-secondary {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.5rem;
+  background: white;
+  color: #475569;
+  border: 2px solid #bae6fd;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 0 #e0f2fe,
+    0 8px 16px rgba(11, 31, 92, 0.06);
+  letter-spacing: 0.01em;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  border-color: #0ea5e9;
+  color: #0ea5e9;
+  box-shadow: 
+    0 6px 0 #bae6fd,
+    0 12px 24px rgba(14, 165, 233, 0.15);
+}
+
+.btn-secondary:active {
+  transform: translateY(2px);
+  box-shadow: 
+    0 2px 0 #bae6fd,
+    0 4px 8px rgba(14, 165, 233, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container-page { padding: 1rem; }
+  .form-card { padding: 1.25rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-actions { flex-direction: column-reverse; }
+  .form-title { font-size: 1.5rem; }
+}
