@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
@@ -31,10 +31,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   // Suscripcion al observable del carrito
   private subscription: Subscription | null = null;
 
-  // Inyeccion de dependencias del servicio del carrito y router
+  // Inyeccion de dependencias del servicio del carrito, router y detector de cambios
   constructor(
     private carritoService: CarritoService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   // Metodo del ciclo de vida que se ejecuta al inicializar
@@ -74,6 +75,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.procesando = false;
         // Mostrar la alerta de exito
         this.mostrarAlerta = true;
+        // Forzar deteccion de cambios para que la alerta se renderice
+        this.cdr.detectChanges();
         // Limpiar el carrito despues de crear la orden
         this.carritoService.limpiarCarrito();
         // Redirigir a productos despues de 2 segundos
@@ -84,6 +87,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       error: (error) => {
         console.error("Error al crear orden:", error);
         this.procesando = false;
+        // Forzar deteccion de cambios tambien en caso de error
+        this.cdr.detectChanges();
         alert("Error al procesar la orden. Intenta de nuevo.");
       }
     });
