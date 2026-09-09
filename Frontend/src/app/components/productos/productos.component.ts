@@ -17,14 +17,14 @@ import { CarritoService } from "../../services/carrito.service";
 export class ProductosComponent implements OnInit, OnDestroy {
   // Array que almacena los productos obtenidos del backend
   productos: Producto[] = [];
-  // Termino de busqueda actual para filtrar la tabla
+  // Término de búsqueda actual para filtrar la tabla
   searchTerm: string = "";
-  // Variable para almacenar el ID del intervalo de actualizacion automatica
+  // Variable para almacenar el ID del intervalo de actualización automática
   private intervalId: any;
-  // ID del producto que esta siendo agregado al carrito (para feedback visual)
+  // ID del producto que esta siendo agregado al carrito
   productoAgregando: number | null = null;
 
-  // Inyeccion de dependencias del servicio, router y detector de cambios
+  // Inyección de dependencias del servicio, router y detector de cambios
   constructor(
     private productoService: ProductoService,
     private router: Router,
@@ -32,23 +32,23 @@ export class ProductosComponent implements OnInit, OnDestroy {
     private carritoService: CarritoService
   ) { }
 
-  // Metodo del ciclo de vida que se ejecuta al inicializar el componente
+  // Método del ciclo de vida que se ejecuta al inicializar el componente
   ngOnInit(): void {
     this.cargarProductos();
-    // Configuracion de actualizacion automatica cada 5 segundos
+    // Configuración de actualización automática cada 5 segundos
     this.intervalId = setInterval(() => {
       this.cargarProductos();
     }, 5000);
   }
 
-  // Metodo del ciclo de vida que limpia el intervalo al destruir el componente
+  // Método del ciclo de vida que limpia el intervalo al destruir el componente
   ngOnDestroy(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
   }
 
-  // Getter que filtra los productos segun el termino de busqueda
+  // Getter que filtra los productos según el término de búsqueda
   get filteredProductos(): Producto[] {
     if (!this.searchTerm) {
       return this.productos;
@@ -61,17 +61,17 @@ export class ProductosComponent implements OnInit, OnDestroy {
     );
   }
 
-  // Metodo que navega al componente de registro de productos
+  // Método que navega al componente de registro de productos
   irARegistro(): void {
     this.router.navigate(["/registro"]);
   }
 
-  // Metodo que navega al componente del carrito
+  // Método que navega al componente del carrito
   irACarrito(): void {
     this.router.navigate(["/carrito"]);
   }
 
-  // Metodo que agrega un producto al carrito con cantidad 1
+  // Método que agrega un producto al carrito con cantidad 1
   agregarAlCarrito(producto: Producto): void {
     // Validar que el producto tenga un ID valido
     if (!producto.id) {
@@ -95,12 +95,12 @@ export class ProductosComponent implements OnInit, OnDestroy {
     }, 800);
   }
 
-  // Metodo que llama al servicio para obtener los productos del backend
+  // Método que llama al servicio para obtener los productos del backend
   cargarProductos(): void {
     this.productoService.getProductos().subscribe({
       next: (data) => {
         this.productos = data;
-        // Forzar deteccion de cambios para que la vista se actualice
+        // Forzar detección de cambios para que la vista se actualice
         this.cdr.detectChanges();
       },
       error: (error) => {
@@ -109,7 +109,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Metodo que calcula el porcentaje de stock para la barra visual (max 100%)
+  // Método que calcula el porcentaje de stock para la barra visual (max 100%)
   getStockPercentage(stock: number): number {
     return Math.min((stock / 100) * 100, 100);
   }
