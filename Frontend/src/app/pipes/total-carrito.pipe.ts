@@ -7,7 +7,7 @@ import { CarritoItem } from "../models/carrito";
   standalone: true
 })
 export class TotalCarritoPipe implements PipeTransform {
-  // Metodo que transforma el array de items del carrito en el total general
+  // Método que transforma el array de items del carrito en el total general
   transform(items: CarritoItem[]): number {
     if (!items || items.length === 0) {
       return 0;
